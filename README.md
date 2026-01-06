@@ -11,6 +11,14 @@
 学习组件化设计
 理解虚拟 DOM
 
+## 项目亮点
+
+实现完整的响应式系统（reactive, ref, effect）
+模拟虚拟 DOM 和 patch 更新流程
+支持组件化设计和模板编译
+使用 scheduler 实现异步更新调度
+零依赖，纯 JavaScript 实现
+
 ## 技术栈
 JavaScript
 Webpack
@@ -23,9 +31,15 @@ Vue3 核心原理
 ## 本地运行
 
 ```bash
+# 1. 安装依赖
 npm install
+
+# 2. 进入示例目录
 cd src/examples
+
+# 3. 安装示例依赖
 npm install
-cd ../..
+
+# 4. 启动开发服务器
+cd ../../
 npm run dev
-```
