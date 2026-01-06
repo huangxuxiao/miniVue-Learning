@@ -6,10 +6,18 @@
 1000 多行代码，零依赖，几乎实现了 vue 完整的流程。
 项目结构尽量还原 vue3 源码，只做主线任务。
 
+## 项目目标
+实现响应式系统
+学习组件化设计
+理解虚拟 DOM
+
+## 技术栈
+JavaScript
+Webpack
+Vue3 核心原理
 ## Examples
 
 [预览地址](https://github.com/huangxuxiao/miniVue-Learning.git)
-
 
 
 ## 本地运行
