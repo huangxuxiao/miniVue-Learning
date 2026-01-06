@@ -4,9 +4,9 @@
 精简版Vue3框架项目- mini-vue 
 基于社区优秀开源项目 MiniVue 的核心思想，结合 Vue3 源码设计理念，独立重构并扩展了响应式系统、组件机制和调度器模块，在保留核心原理的同时，优化了代码结构、提升了可读性、增强了功能完整性，打造了一个精简版 Vue3 框架。
 
-##核心难点与解决方案
+## 核心难点与解决方案
 
-#难点1：响应式系统与依赖追踪
+# 难点1：响应式系统与依赖追踪
 问题：原始实现存在嵌套响应失效、Map/Set 响应缺失等边界问题。
 重构方案：
 // src/reactivity/effect.js 核心改进  
@@ -27,7 +27,7 @@ export function effect(fn) {
 2.添加 cleanup 机制自动清理无效依赖，内存泄漏减少 90%
 3.覆盖 15+ 边界测试用例（数组索引变化、Map/Set 响应等）
 
-#难点2：虚拟 DOM diff 算法优化
+# 难点2：虚拟 DOM diff 算法优化
 问题：原始 diff 策略在 1000+ 节点列表更新时性能下降 70%。
 重构方案：
 // src/runtime-core/renderer.js 核心改进  
@@ -41,7 +41,7 @@ function patchKeyedChildren(c1, c2, container) {
 2.采用双端 diff + key 缓存机制，减少 40% 遍历次数
 3.1000+ 节点测试：渲染性能提升 3.2 倍，内存占用降低 35%
 
-#难点3：编译器与运行时解耦
+# 难点3：编译器与运行时解耦
 问题：原始项目编译器与运行时高度耦合，难以扩展新特性。
 重构方案：
 // src/compiler-core/compile.js 架构优化  
@@ -65,7 +65,7 @@ export function baseCompile(template, options = {}) {
 使用 scheduler 实现异步更新调度
 零依赖，纯 JavaScript 实现
 
-##项目结构
+## 项目结构
 
 miniVue-Learning/  
 ├── src/  
