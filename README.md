@@ -6,12 +6,13 @@
 
 ## 核心难点与解决方案
 
-### 难点1：响应式系统与依赖追踪
+## 难点1：响应式系统与依赖追踪
 
 问题：原始实现存在嵌套响应失效、Map/Set 响应缺失等边界问题。
 
 重构方案：// src/reactivity/effect.js 核心改进
 
+```markdown
 ```js
 
 export function effect(fn) {
@@ -33,7 +34,7 @@ export function effect(fn) {
 2.添加 cleanup 机制自动清理无效依赖，内存泄漏减少 90%
 3.覆盖 15+ 边界测试用例（数组索引变化、Map/Set 响应等）
 
-### 难点2：虚拟 DOM diff 算法优化
+## 难点2：虚拟 DOM diff 算法优化
 问题：原始 diff 策略在 1000+ 节点列表更新时性能下降 70%。
 重构方案：
 // src/runtime-core/renderer.js 核心改进
@@ -52,7 +53,7 @@ function patchKeyedChildren(c1, c2, container) {
 2.采用双端 diff + key 缓存机制，减少 40% 遍历次数
 3.1000+ 节点测试：渲染性能提升 3.2 倍，内存占用降低 35%
 
-### 难点3：编译器与运行时解耦
+## 难点3：编译器与运行时解耦
 问题：原始项目编译器与运行时高度耦合，难以扩展新特性。
 重构方案：
 // src/compiler-core/compile.js 架构优化
@@ -82,23 +83,24 @@ export function baseCompile(template, options = {}) {
 
 ## 项目结构
 
+```bash
 miniVue-Learning/  
 ├── src/  
-│   ├── reactivity/       # 响应式系统（核心重构模块）  
-│   │   ├── effect.js     # 副作用管理（含嵌套栈优化）  
-│   │   ├── reactive.js   # Proxy 响应式对象  
-│   │   └── ref.js        # ref 实现  
-│   ├── runtime-core/     # 运行时核心  
-│   │   ├── renderer.js   # 渲染器（含 LIS 优化）  
-│   │   └── vnode.js      # 虚拟 DOM  
-│   ├── compiler-core/    # 模板编译（编译时/运行时分离）  
+│   ├── reactivity/       // 响应式系统（核心重构模块）  
+│   │   ├── effect.js     // 副作用管理（含嵌套栈优化）  
+│   │   ├── reactive.js   // Proxy 响应式对象  
+│   │   └── ref.js        // ref 实现  
+│   ├── runtime-core/     // 运行时核心  
+│   │   ├── renderer.js   // 渲染器（含 LIS 优化）  
+│   │   └── vnode.js      // 虚拟 DOM  
+│   ├── compiler-core/    // 模板编译（编译时/运行时分离）  
 │   │   └── compile.js  
-│   ├── examples/         # 渐进式示例系统  
-│   └── index.js          # 入口文件（扩展性设计）  
-├── docs/                 # 文档与截图  
-├── tests/                # 85%+ 覆盖率测试  
-├── .eslintrc.js          # 代码规范配置  
-└── vite.config.js        # Vite 构建配置  
+│   ├── examples/         // 渐进式示例系统  
+│   └── index.js          // 入口文件（扩展性设计）  
+├── docs/                 // 文档与截图  
+├── tests/                // 85%+ 覆盖率测试  
+├── .eslintrc.js          // 代码规范配置  
+└── vite.config.js        // Vite 构建配置  
 
 
 ## 技术栈
