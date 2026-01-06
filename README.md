@@ -8,7 +8,7 @@
 
 ## Examples
 
-[预览地址](https://github.com/17608903156/HXX-.git)
+[预览地址](https://github.com/huangxuxiao/miniVue-Learning.git)
 
 
 
