@@ -10,9 +10,10 @@
 
 问题：原始实现存在嵌套响应失效、Map/Set 响应缺失等边界问题。
 
-重构方案：`// src/reactivity/effect.js` 核心改进
+重构方案：// src/reactivity/effect.js 核心改进
 
 ```js
+
 export function effect(fn) {
   const _effect = (...args) => {
     cleanup(_effect) // 新增：自动清理无效依赖
@@ -36,7 +37,9 @@ export function effect(fn) {
 问题：原始 diff 策略在 1000+ 节点列表更新时性能下降 70%。
 重构方案：
 // src/runtime-core/renderer.js 核心改进
-```js  
+
+```js
+
 function patchKeyedChildren(c1, c2, container) {
   // 1. 双端 diff 快速路径
   // 2. 新增：最长递增子序列(LIS)优化节点移动
@@ -52,7 +55,10 @@ function patchKeyedChildren(c1, c2, container) {
 ### 难点3：编译器与运行时解耦
 问题：原始项目编译器与运行时高度耦合，难以扩展新特性。
 重构方案：
-// src/compiler-core/compile.js 架构优化  
+// src/compiler-core/compile.js 架构优化
+
+```js
+
 export function baseCompile(template, options = {}) {  
   // 1. 标准化 AST 接口  
   const ast = parse(template, options)  
