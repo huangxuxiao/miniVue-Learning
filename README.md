@@ -26,12 +26,13 @@ export function effect(fn) {
   _effect.deps = []
   return _effect
 }
+
 优化成果：
 1.实现 activeEffect 嵌套栈管理，解决深层嵌套响应失效问题
 2.添加 cleanup 机制自动清理无效依赖，内存泄漏减少 90%
 3.覆盖 15+ 边界测试用例（数组索引变化、Map/Set 响应等）
 
-# 难点2：虚拟 DOM diff 算法优化
+### 难点2：虚拟 DOM diff 算法优化
 问题：原始 diff 策略在 1000+ 节点列表更新时性能下降 70%。
 重构方案：
 // src/runtime-core/renderer.js 核心改进
@@ -42,12 +43,13 @@ function patchKeyedChildren(c1, c2, container) {
   const seq = getSequence(newIndexToOldIndexMap)
   // 3. 从后向前应用移动，最小化 DOM 操作
 }
+
 优化成果：
 1.实现 最长递增子序列(LIS)算法 优化节点移动顺序
 2.采用双端 diff + key 缓存机制，减少 40% 遍历次数
 3.1000+ 节点测试：渲染性能提升 3.2 倍，内存占用降低 35%
 
-# 难点3：编译器与运行时解耦
+### 难点3：编译器与运行时解耦
 问题：原始项目编译器与运行时高度耦合，难以扩展新特性。
 重构方案：
 // src/compiler-core/compile.js 架构优化  
@@ -58,7 +60,8 @@ export function baseCompile(template, options = {}) {
   transform(ast, options.plugins)  
   // 3. 生成渲染函数  
   return generate(ast)  
-}  
+}
+
 1.重构为 编译时 + 运行时分离架构，解耦度提升 60%
 2.设计标准化 AST 节点接口，扩展性显著增强
 3.添加详细的编译错误定位（文件+行号），调试效率提升 60%
@@ -102,7 +105,7 @@ Vue3 核心原理
 
 
 ## 本地运行
-
+````bash`
 # 1. 克隆仓库  
 git clone https://github.com/huangxuxiao/miniVue-Learning.git  
 cd miniVue-Learning  
