@@ -6,23 +6,27 @@
 
 ## 核心难点与解决方案
 
-# 难点1：响应式系统与依赖追踪
+### 难点1：响应式系统与依赖追踪
+
 问题：原始实现存在嵌套响应失效、Map/Set 响应缺失等边界问题。
-重构方案：
-// src/reactivity/effect.js 核心改进  
-export function effect(fn) {  
-  const _effect = (...args) => {  
-    cleanup(_effect) // 新增：自动清理无效依赖  
-    activeEffectStack.push(_effect) // 新增：effect 嵌套栈管理  
-    try {  
-      return fn(...args)  
-    } finally {  
-      activeEffectStack.pop()  
-    }  
-  }  
-  _effect.deps = []  
-  return _effect  
-}  
+
+重构方案：`// src/reactivity/effect.js` 核心改进
+
+```js
+export function effect(fn) {
+  const _effect = (...args) => {
+    cleanup(_effect) // 新增：自动清理无效依赖
+    activeEffectStack.push(_effect) // 新增：effect 嵌套栈管理
+    try {
+      return fn(...args)
+    } finally {
+      activeEffectStack.pop()
+    }
+  }
+  _effect.deps = []
+  return _effect
+}
+优化成果：
 1.实现 activeEffect 嵌套栈管理，解决深层嵌套响应失效问题
 2.添加 cleanup 机制自动清理无效依赖，内存泄漏减少 90%
 3.覆盖 15+ 边界测试用例（数组索引变化、Map/Set 响应等）
@@ -30,13 +34,15 @@ export function effect(fn) {
 # 难点2：虚拟 DOM diff 算法优化
 问题：原始 diff 策略在 1000+ 节点列表更新时性能下降 70%。
 重构方案：
-// src/runtime-core/renderer.js 核心改进  
-function patchKeyedChildren(c1, c2, container) {  
-  // 1. 双端 diff 快速路径  
-  // 2. 新增：最长递增子序列(LIS)优化节点移动  
-  const seq = getSequence(newIndexToOldIndexMap)  
-  // 3. 从后向前应用移动，最小化 DOM 操作  
-}  
+// src/runtime-core/renderer.js 核心改进
+```js  
+function patchKeyedChildren(c1, c2, container) {
+  // 1. 双端 diff 快速路径
+  // 2. 新增：最长递增子序列(LIS)优化节点移动
+  const seq = getSequence(newIndexToOldIndexMap)
+  // 3. 从后向前应用移动，最小化 DOM 操作
+}
+优化成果：
 1.实现 最长递增子序列(LIS)算法 优化节点移动顺序
 2.采用双端 diff + key 缓存机制，减少 40% 遍历次数
 3.1000+ 节点测试：渲染性能提升 3.2 倍，内存占用降低 35%
