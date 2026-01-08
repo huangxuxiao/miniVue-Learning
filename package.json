@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
+    "test:unit": "jest",
     "build": "webpack",
     "dev": "webpack serve --open",
     "format": "prettier --write ."
