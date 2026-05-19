@@ -76,6 +76,7 @@ Time:        ~5s
 
 ##  项目结构
 
+```
 packages/
 ├── reactivity/
 │   └── src/
@@ -84,8 +85,11 @@ packages/
 └── api/
     └── src/
         └── index.js        // 上下文校验（isInSetup）
+```
 
 ##  如何运行
+
+## 如何运行
 
 ```bash
 # 1. 克隆仓库
