@@ -85,7 +85,7 @@ packages/
 └── api/
     └── src/
         └── index.js        // 上下文校验（isInSetup）
-
+```
 
 ##  如何运行
 
@@ -98,3 +98,4 @@ npm install
 
 # 3. 启动开发服务器
 npm run dev
+```
