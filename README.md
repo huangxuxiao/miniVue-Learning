@@ -76,7 +76,7 @@ Time:        5s
 
 ##  项目结构
 
-```
+```bash
 packages/
 ├── reactivity/
 │   └── src/
