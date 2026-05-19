@@ -55,7 +55,7 @@
 - **成果**：错误调用时抛出明确警告信息，开发体验显著提升。
 
 ##  测试验证
-所有优化均通过单元测试验证（框架：Jest，命令行 `npm run test:unit`）：
+框架：Jest，命令行 `npm run test:unit`）：
 
 ```bash
 # 嵌套 ref 修复测试
@@ -75,6 +75,7 @@ Tests:       207 passed, 207 total
 Time:        ~5s
 
 ##  项目结构
+
 packages/
 ├── reactivity/
 │   └── src/
@@ -85,6 +86,7 @@ packages/
         └── index.js        // 上下文校验（isInSetup）
 
 ##  如何运行
+
 ```bash
 # 1. 克隆仓库
 git clone https://github.com/huangxuxiao/miniVue-Learning.git
